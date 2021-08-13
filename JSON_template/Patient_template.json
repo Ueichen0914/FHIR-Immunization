@@ -1,0 +1,21 @@
+{
+        "resourceType": "Patient",
+
+        "identifier": [
+            {
+                "use": "usual",
+                "system": "https://www.dicom.org.tw/cs/identityCardNumber_tw",
+                "value": "unknown"
+            }
+        ],
+        "name": [
+            {
+                "use": "official",
+                "text": "unknown"
+            }
+        ],
+        "gender": "unknown",
+        "birthDate": "unknown",
+        "deceasedBoolean": false,
+        "managingOrganization": {"reference": "Organization/49964"}
+}
