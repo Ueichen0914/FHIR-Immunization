@@ -6,7 +6,7 @@ from pprint import pprint
 
 def patient(dic1):
     with open(
-        "JSON_template\Patient_template.json", "r", encoding="utf-8"
+        "JSON_template\Patient_success_template.json", "r", encoding="utf-8"
     ) as patient_json:
         patient = json.load(patient_json)
     for key, value in dic1.items():
@@ -14,7 +14,7 @@ def patient(dic1):
             patient["name"][0]["text"] = value
         elif key == "身分證":
             patient["identifier"][0]["value"] = value
-        elif key == "性別":
+        elif key == "性別:
             patient["gender"] = value
         elif key == "生日":
             ivalue = int(value)
