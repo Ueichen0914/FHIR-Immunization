@@ -11,11 +11,11 @@ def patient(dic1):
         patient = json.load(patient_json)
     for key, value in dic1.items():
         if key == "姓名":
-            patient["name"][0]["text"] = value
+            patient["name"][0]["text"] = str(value)
         elif key == "身分證":
-            patient["identifier"][0]["value"] = value
-        elif key == "性別:
-            patient["gender"] = value
+            patient["identifier"][0]["value"] = str(value)
+        elif key == "性別":
+            patient["gender"] = str(value)
         elif key == "生日":
             ivalue = int(value)
             if ivalue < 2000000:
