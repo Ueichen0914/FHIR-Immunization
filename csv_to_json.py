@@ -62,7 +62,7 @@ with open(file) as f:
         rp = requests.post("https://hapi.fhir.tw/fhir/Patient", json=json_patient)
         print("Status code : ", rp.status_code)
         print("Print the entire Post Request : ")
-        pprint(rp.json())
+        print(rp.json())
         # print(json.dump(rp.json(), indent=4, ensure_ascii=False))
 
 
