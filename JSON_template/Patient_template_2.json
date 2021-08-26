@@ -1,9 +1,0 @@
-{
-  "resourceType": "Patient",
-  "id": "0559962b-42ef-451c-8018-6c57073a01d8",
-  "identifier":[{
-    "system": "https://www.dicom.org.tw/cs/identityCardNumber_tw",
-     "value": "R270623712"}],
-  "active": true, "name": [{"family": "\u6881", "given": ["\u98db"], "text": "\u6881\u98db"}],
-  "telecom": [{"system": "email", "value": "yanli@gmail.com"}]
-}
