@@ -1,11 +1,13 @@
-import csv
-import json
-import requests
-import logging
+from csv_upload import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
+from flask import Flask, redirect, url_for, render_template
+from werkzeug.utils import secure_filename
 
-header = {'Content-Type': 'application/json'}
-fhirbaseURL = 'https://hapi.fhir.tw/fhir/Patient'
+UPLOAD_FOLDER = ''
+ALLOWED_EXTENSIONS = set(['csv'])
 
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 def patient(dic1):
     with open(
@@ -30,7 +32,6 @@ def patient(dic1):
             pass
     return patient
 
-
 def parse_csv(file):
     file = "csv_example\FHIR resource.csv"
     with open(file) as f:
@@ -47,4 +48,24 @@ def parse_csv(file):
             print("Print the entire Post Request : ")
             print(rp.text)
 
+@app.route("/")
+def home():
+    return render_template("Welcome_Page.html")
 
+@app.route("/upload")
+def upload():
+    return render_template("upload.html",methods=["GET", "POST"])
+
+@app.route("/parse")
+def parse():
+    return render_template("parse.html")
+
+@app.route("/upload_result")
+def result():
+    return render_template("upload_result.html")
+
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
