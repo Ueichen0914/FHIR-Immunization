@@ -56,6 +56,18 @@ def patient(dic):
         else:
             pass
     return patient
+def observation_height(dic):
+    with open(
+            "JSON_template\Observation_Body_height.json", "r", encoding="utf-8") as height_json:
+        height = json.load(height_json)
+    for key, value in dic.items():
+        if key == "HEIGHT":
+            height["valueQuantity"]["value"] = float(value)
+        elif key == "LV_UUID":
+            height["subject"]["reference"] = str(value)
+        else:
+            pass
+
 
 
 file = "csv_example\FHIR_test.csv"
@@ -66,6 +78,13 @@ with open(file) as f:
         for key, value in line.items():
             if key == "LV_UUID":
                 fhirresourceURL = fhirbaseURL + "/Patient/" +str(value)
+        r_patient = requests.put(
+            fhirresourceURL, headers=headers, data=json_patient)
+        print(r_patient.text)
+        json_patient = json.dumps(observation_height(line))
+        for key, value in line.items():
+            if key == "LV_UUID":
+                fhirresourceURL = fhirbaseURL + "/Observation/" +str(value)
         r_patient = requests.put(
             fhirresourceURL, headers=headers, data=json_patient)
         print(r_patient.text)
