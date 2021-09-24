@@ -3,6 +3,7 @@ import json
 import requests
 
 headers = {'Content-Type': 'application/json'}
+fhirbaseURL = "https://hapi.fhir.tw/fhir"
 
 
 def patient(dic):
@@ -64,7 +65,7 @@ with open(file) as f:
         json_patient = json.dumps(patient(line))
         for key, value in line.items():
             if key == "LV_UUID":
-                fhirbaseURL = "https://hapi.fhir.tw/fhir/Patient/"+str(value)
+                fhirresourceURL = fhirbaseURL + "/Patient/" +str(value)
         r_patient = requests.put(
-            fhirbaseURL, headers=headers, data=json_patient)
+            fhirresourceURL, headers=headers, data=json_patient)
         print(r_patient.text)
