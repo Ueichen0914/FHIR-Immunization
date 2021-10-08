@@ -23,7 +23,7 @@
     "subject": {
         "reference": "Patient/UUID"
     },
-    "effectiveDateTime": "2018-04-01T00:00:00Z",
+    "effectiveDateTime": "2018-04-01",
     "method": {
         "coding": [
             {
