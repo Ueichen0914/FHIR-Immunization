@@ -1,6 +1,5 @@
 {
   "resourceType": "Observation",
-  "id": "smoke",
   "status": "final",
   "category": [
     {
@@ -25,6 +24,7 @@
     "text": "嚼檳榔行為"
   },
   "subject": {
-    "reference": "Patient/1"
-  }
+    "reference": "Patient/UUID"
+  },
+  "effectiveDateTime": "2020-09-28"
 }

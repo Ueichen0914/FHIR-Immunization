@@ -1,0 +1,66 @@
+{
+    "resourceType": "Observation",
+    "status": "final",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                    "code": "laboratory"
+                }
+            ]
+        }
+    ],
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "10328-3",
+                "display": "Lymphocytes/100 leukocytes in Cerebral spinal fluid by Manual count"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2018-04-01T00:00:00Z",
+    "method": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "16361008",
+                "display": "Autopsy, gross and microscopic examination, stillborn or newborn"
+            }
+        ]
+    },
+    "component": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "https://www.hpa.gov.tw/",
+                        "code": "NEXAM",
+                        "display": "區域淋巴結檢查數目"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 0
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "https://www.hpa.gov.tw/",
+                        "code": "NPOSIT",
+                        "display": "區域淋巴結侵犯數目"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 98
+            }
+        }
+    ]
+}

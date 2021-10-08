@@ -1,6 +1,5 @@
 {
   "resourceType": "Observation",
-  "id": "smoke",
   "status": "final",
   "category": [
     {
@@ -18,13 +17,13 @@
     "coding": [
       {
         "system": "https://www.hpa.gov.tw/",
-        "code": "0",
-        "display": "Drinking Behavior"
+        "code": "DRINKING",
+        "display": "0"
       }
-    ],
-    "text": "喝酒"
+    ]
   },
   "subject": {
-    "reference": "Patient/1"
-  }
+    "reference": "Patient/UUID"
+  },
+  "effectiveDateTime": "2020-09-28"
 }

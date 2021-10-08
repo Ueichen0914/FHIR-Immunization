@@ -1,6 +1,5 @@
 {
   "resourceType": "Observation",
-  "id": "smoke",
   "status": "final",
   "category": [
     {
@@ -18,13 +17,13 @@
     "coding": [
       {
         "system": "https://www.hpa.gov.tw/",
-        "code": "88",
-        "display": "Smoking Behavior"
+        "code": "SMOKING",
+        "display": "88"
       }
-    ],
-    "text": "吸菸行為"
+    ]
   },
   "subject": {
-    "reference": "Patient/infant"
-  }
+    "reference": "Patient/UUID"
+  },
+  "effectiveDateTime": "2020-09-28"
 }

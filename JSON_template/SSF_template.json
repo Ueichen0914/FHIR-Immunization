@@ -1,0 +1,29 @@
+{
+    "resourceType": "Observation",
+    "status": "final",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                    "code": "laboratory",
+                    "display": "Laboratory"
+                }
+            ],
+            "text": "Laboratory"
+        }
+    ],
+    "code": {
+        "coding": [
+            {
+                "system": "https://www.hpa.gov.tw/",
+                "code": "SSF1",
+                "display": "988"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/UUID"
+    },
+    "effectiveDateTime": "2020-09-28"
+}

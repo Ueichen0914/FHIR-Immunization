@@ -1,0 +1,49 @@
+{
+    "resourceType": "Observation",
+    "status": "final",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                    "code": "laboratory"
+                }
+            ]
+        }
+    ],
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "21889-1",
+                "display": "Size Tumor"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/UUID"
+    },
+    "effectiveDateTime": "2018-04-01T00:00:00Z",
+    "method": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "24419-4",
+                "display": "Pathology report gross observation"
+            }
+        ]
+    },
+    "component": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "https://www.hpa.gov.tw/",
+                        "code": "TSize_C",
+                        "display": "60"
+                    }
+                ]
+            }
+        }
+    ]
+}
