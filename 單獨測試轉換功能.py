@@ -89,7 +89,6 @@ def observation_weight(dic):
     return weight
 
 
-# 不太確定smoking要填哪個欄位
 def observation_smoking(dic):
     with open(
             "JSON_template\Smoking_Behavior.json", "r", encoding="utf-8") as smoke_json:
@@ -105,7 +104,6 @@ def observation_smoking(dic):
     return smoke
 
 
-# 為甚麼一下是放在code一下是放在display欄位??
 def observation_betalnut(dic):
     with open(
             "JSON_template\Betel_Nut_Chewing_Behavior.json", "r", encoding="utf-8") as betal_json:
@@ -168,36 +166,36 @@ def observation_SSF(dic, num):
     return SSF
 
 
-# def observation_tumor(dic):
-#     with open(
-#             "JSON_template\tumor_size.json", "r", encoding="utf-8") as tumor_json:
-#         tumor = json.load(tumor_json)
-#     for key, value in dic.items():
-#         if key == "TSIZE_C":
-#             tumor["component"][0]["code"]["coding"][0]["display"] = str(value)
-#         elif key == "LV_UUID":
-#             tumor["subject"]["reference"] = "Patient/" + str(value)
-#         else:
-#             pass
-#     tumor["effectiveDateTime"] = str(datetime.date.today())
-#     return tumor
+def observation_tumor(dic):
+    with open(
+            "JSON_template\Tumor_size.json", "r", encoding="utf-8") as tumor_json:
+        tumor = json.load(tumor_json)
+    for key, value in dic.items():
+        if key == "TSIZE_C":
+            tumor["component"][0]["code"]["coding"][0]["display"] = str(value)
+        elif key == "LV_UUID":
+            tumor["subject"]["reference"] = "Patient/" + str(value)
+        else:
+            pass
+    tumor["effectiveDateTime"] = str(datetime.date.today())
+    return tumor
 
 
-# def observation_lymph(dic):
-#     with open(
-#             "JSON_template\tumor_size.json", "r", encoding="utf-8") as lymph_json:
-#         lymph = json.load(lymph_json)
-#     for key, value in dic.items():
-#         if key == "NEXAM":
-#             lymph["component"][0]["valueQuantity"]["value"] = int(value)
-#         elif key == "NPOSIT":
-#             lymph["component"][1]["valueQuantity"]["value"] = int(value)
-#         elif key == "LV_UUID":
-#             lymph["subject"]["reference"] = "Patient/" + str(value)
-#         else:
-#             pass
-#     lymph["effectiveDateTime"] = str(datetime.date.today())
-#     return lymph
+def observation_lymph(dic):
+    with open(
+            "JSON_template\Lymph.json", "r", encoding="utf-8") as lymph_json:
+        lymph = json.load(lymph_json)
+    for key, value in dic.items():
+        if key == "NEXAM":
+            lymph["component"][0]["valueQuantity"]["value"] = int(value)
+        elif key == "NPOSIT":
+            lymph["component"][1]["valueQuantity"]["value"] = int(value)
+        elif key == "LV_UUID":
+            lymph["subject"]["reference"] = "Patient/" + str(value)
+        else:
+            pass
+    lymph["effectiveDateTime"] = str(datetime.date.today())
+    return lymph
 
 
 file = "csv_example\FHIR_test.csv"
@@ -256,14 +254,14 @@ with open(file) as f:
                 fhirresourceURL, headers=headers, data=json_ob)
             print(r_ob.text)
         # Post Tumor size
-        # json_ob = json.dumps(observation_tumor(line))
-        # fhirresourceURL = fhirbaseURL + "/Observation"
-        # r_ob = requests.post(
-        #     fhirresourceURL, headers=headers, data=json_ob)
-        # print(r_ob.text)
+        json_ob = json.dumps(observation_tumor(line))
+        fhirresourceURL = fhirbaseURL + "/Observation"
+        r_ob = requests.post(
+            fhirresourceURL, headers=headers, data=json_ob)
+        print(r_ob.text)
         # Post Lymph
-        # json_ob = json.dumps(observation_lymph(line))
-        # fhirresourceURL = fhirbaseURL + "/Observation"
-        # r_ob = requests.post(
-        #     fhirresourceURL, headers=headers, data=json_ob)
-        # print(r_ob.text)
+        json_ob = json.dumps(observation_lymph(line))
+        fhirresourceURL = fhirbaseURL + "/Observation"
+        r_ob = requests.post(
+            fhirresourceURL, headers=headers, data=json_ob)
+        print(r_ob.text)
