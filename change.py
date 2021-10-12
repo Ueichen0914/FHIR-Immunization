@@ -2,6 +2,7 @@ import csv
 import json
 import requests
 import datetime
+import time
 
 headers = {'Content-Type': 'application/json'}
 fhirbaseURL = "https://hapi.fhir.tw/fhir"
@@ -199,6 +200,7 @@ def observation_lymph(dic):
 
 
 file = "csv_example\FHIR_test.csv"
+time_start = time.time()
 with open(file) as f:
     text = csv.DictReader(f)
     for line in text:
@@ -209,59 +211,63 @@ with open(file) as f:
                 fhirresourceURL = fhirbaseURL + "/Patient/" + str(value)
         r_patient = requests.put(
             fhirresourceURL, headers=headers, data=json_patient)
-        print(r_patient.text)
+        # print(r_patient.text)
         # Post Height
         json_ob = json.dumps(observation_height(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post Weight
         json_ob = json.dumps(observation_weight(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post Smoking
         json_ob = json.dumps(observation_smoking(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post Betalnut
         json_ob = json.dumps(observation_betalnut(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post Drinking
         json_ob = json.dumps(observation_drinking(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post Performance
         json_ob = json.dumps(observation_performance(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post SSF
         for i in range(10):
             json_ob = json.dumps(observation_SSF(line, str(i+1)))
             fhirresourceURL = fhirbaseURL + "/Observation"
             r_ob = requests.post(
                 fhirresourceURL, headers=headers, data=json_ob)
-            print(r_ob.text)
+            # print(r_ob.text)
         # Post Tumor size
         json_ob = json.dumps(observation_tumor(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
         # Post Lymph
         json_ob = json.dumps(observation_lymph(line))
         fhirresourceURL = fhirbaseURL + "/Observation"
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
-        print(r_ob.text)
+        # print(r_ob.text)
+time_end = time.time()
+
+time_c = time_end - time_start
+print(time_c)
