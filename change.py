@@ -200,10 +200,11 @@ def observation_lymph(dic):
 
 
 file = "csv_example\FHIR_test.csv"
-time_start = time.time()
+
 with open(file) as f:
     text = csv.DictReader(f)
     for line in text:
+        time_start = time.time()
         # Put Patient
         json_patient = json.dumps(patient(line))
         for key, value in line.items():
@@ -267,7 +268,6 @@ with open(file) as f:
         r_ob = requests.post(
             fhirresourceURL, headers=headers, data=json_ob)
         # print(r_ob.text)
-time_end = time.time()
-
-time_c = time_end - time_start
-print(time_c)
+        time_end = time.time()
+        time_c = time_end - time_start
+        print(time_c)
