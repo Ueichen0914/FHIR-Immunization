@@ -1,0 +1,71 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Procedure",
+                "id": "example",
+                "status": "completed",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "https://www.hpa.gov.tw/",
+                            "code": "CH",
+                            "display": "申報醫院化學治療"
+                        }
+                    ],
+                    "text": "申報醫院化學治療"
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "https://www.hpa.gov.tw/",
+                            "code": "1"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/example"
+                },
+                "performedDateTime": "2018-01-30"
+            },
+            "request": {
+                "method": "Post",
+                "url": "/Procedure"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Procedure",
+                "id": "example",
+                "status": "completed",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "https://www.hpa.gov.tw/",
+                            "code": "OPLN",
+                            "display": "申報醫院區域淋巴結手術範圍"
+                        }
+                    ],
+                    "text": "申報醫院區域淋巴結手術範圍"
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "https://www.hpa.gov.tw/",
+                            "code": "2"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/example"
+                }
+            },
+            "request": {
+                "method": "Post",
+                "url": "/Procedure"
+            }
+        }
+    ]
+}
