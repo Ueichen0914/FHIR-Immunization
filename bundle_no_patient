@@ -2,7 +2,6 @@ import csv
 import json
 import requests
 from datetime import date
-import time
 
 headers = {'Content-Type': 'application/json'}
 fhirbaseURL = "https://hapi.fhir.tw/fhir"
@@ -158,9 +157,12 @@ with open(file) as f:
         for key, value in line.items():
             if key == "LV_UUID":
                 ID = value
+            count = 0
         for key, value in line.items():
             json, logic = observation_height(key, value, ID, time, height)
             bundle = output(logic, json, bundle)
             json, logic = observation_weight(key, value, ID, time, weight)
             bundle = output(logic, json, bundle)
+            count += 1
     print(bundle)
+    print(count)
