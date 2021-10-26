@@ -12,10 +12,11 @@ def observation_height(key, value, ID, time, JSON):
     if key == "HEIGHT":
         JSON["resource"]["valueQuantity"]["value"] = float(value)
         logic = True
-        print("hello")
+        print(JSON)
     else:
         pass
     JSON["resource"]["effectiveDateTime"] = time
+    JSON["resource"]["id"] = ID
     JSON["request"]["url"] = "Observation/" + ID
     return JSON, logic
 
@@ -25,9 +26,11 @@ def observation_weight(key, value, ID, time, JSON):
     if key == "WEIGHT":
         JSON["resource"]["valueQuantity"]["value"] = int(value)
         logic = True
+        print(JSON)
     else:
         pass
     JSON["resource"]["effectiveDateTime"] = time
+    JSON["resource"]["id"] = ID
     JSON["request"]["url"] = "Observation/" + ID
     return JSON, logic
 
@@ -138,13 +141,14 @@ def observation_weight(key, value, ID, time, JSON):
 def output(logic, json, bundle):
     if logic:
         bundle["entry"].append(json)
+        print(bundle)
     return bundle
 
 
 file = "csv_example\FHIR_test.csv"
 with open(file) as f:
     text = csv.DictReader(f)
-    time = date.today()
+    time = str(date.today())
     for line in text:
         with open("Bundle_template\Bundle.json", "r", encoding="utf-8") as Bundle_json:
             bundle = json.load(Bundle_json)
@@ -156,13 +160,14 @@ with open(file) as f:
             smoke = json.load(smoke_json)
         for key, value in line.items():
             if key == "LV_UUID":
-                ID = value
-            count = 0
+                ID = str(value)
         for key, value in line.items():
-            json, logic = observation_height(key, value, ID, time, height)
-            bundle = output(logic, json, bundle)
-            json, logic = observation_weight(key, value, ID, time, weight)
-            bundle = output(logic, json, bundle)
-            count += 1
-    print(bundle)
-    print(count)
+            JSON, logic = observation_height(key, value, ID, time, height)
+            bundle = output(logic, JSON, bundle)
+            JSON, logic = observation_weight(key, value, ID, time, weight)
+            bundle = output(logic, JSON, bundle)
+        print(bundle)
+        # json_bundle = json.dumps(bundle)
+        # r_b = requests.post(
+        #     fhirbaseURL, headers=headers, data=json_bundle)
+        # print(r_b.text)
