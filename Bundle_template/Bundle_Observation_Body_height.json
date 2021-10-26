@@ -1,0 +1,40 @@
+{
+    "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+            {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                        "code": "vital-signs",
+                        "display": "Vital Signs"
+                    }
+                ]
+            }
+        ],
+        "code": {
+            "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "3137-7",
+                    "display": "Body height Measured"
+                }
+            ]
+        },
+        "subject": {
+            "reference": "Patient/UUID"
+        },
+        "effectiveDateTime": "2021-03-07",
+        "valueQuantity": {
+            "value": 150.0,
+            "unit": "cm",
+            "system": "http://unitsofmeasure.org",
+            "code": "cm"
+        }
+    },
+    "request": {
+        "method": "Post",
+        "url": "/Procedure"
+    }
+}

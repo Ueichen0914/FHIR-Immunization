@@ -1,7 +1,7 @@
 {
   "resource": {
     "resourceType": "Patient",
-    "id": "unknown",
+    "id": "",
     "identifier": [
       {
         "use": "usual",
@@ -16,17 +16,17 @@
         "text": "test"
       }
     ],
-    "gender": "unknown",
-    "birthDate": "2021-01-01",
+    "gender": "",
+    "birthDate": "",
     "address": [
       {
-        "postalCode": "unknown"
+        "postalCode": ""
       }
     ],
-    "deceasedDateTime": "2021-01-01"
+    "deceasedDateTime": ""
   },
   "request": {
-    "method": "Put",
-    "url": "/Procedure"
+    "method": "PUT",
+    "url": ""
   }
 }

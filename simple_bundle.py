@@ -1,7 +1,7 @@
 import csv
 import json
 import requests
-from datetime import datetime
+import datetime
 import time
 
 headers = {'Content-Type': 'application/json'}
@@ -18,6 +18,7 @@ def patient(dic):
             patient["id"] = str(value)
             patient_r["request"]["url"] = fhirbaseURL + \
                 "/Patient/" + str(value)
+            ID = str(value)
         elif key == "SEX":
             # 判斷性別
             if value == "1":
@@ -54,7 +55,7 @@ def patient(dic):
             # 西元加入"-"放入ssvalue
             ssvalue = svalue[:4] + "-" + svalue[4:6] + "-" + svalue[6:8]
             patient["deceasedDateTime"] = ssvalue
-    return patient
+    return patient_r, ID
 
 
 def observation_height(dic):
@@ -102,19 +103,21 @@ def observation_smoking(dic):
     return smoke
 
 
-def observation_betalnut(dic):
-    with open(
-            "JSON_template\Betel_Nut_Chewing_Behavior.json", "r", encoding="utf-8") as betal_json:
-        betal = json.load(betal_json)
+def observation_betalnut(dic, id):
+    with open("Bundle_template\Bundle_Betel_Nut.json", "r", encoding="utf-8") as betal_json:
+        betal_r = json.load(betal_json)
+        betal = betal_r["resource"]
+    logic = False
     for key, value in dic.items():
         if key == "BTCHEW":
             betal["code"]["coding"][0]["code"] = str(value)
-        elif key == "LV_UUID":
-            betal["subject"]["reference"] = "Patient/" + str(value)
+            logic = True
         else:
             pass
     betal["effectiveDateTime"] = str(datetime.date.today())
-    return betal
+    betal["subject"]["reference"] = "Patient/" + id
+    betal_r["request"]["url"] = fhirbaseURL + "/Observation"
+    return betal_r, logic
 
 
 def observation_drinking(dic):
@@ -202,7 +205,15 @@ with open(file) as f:
     text = csv.DictReader(f)
     for line in text:
         with open(
-                "Bundle_template\Bundle.json", "r", encoding="utf-8") as Bundle_json:
-            bundle = json.load(Bundle_json)
-        for key, value in line.items():
-            patient(line)
+                "Bundle_template\Bundle.json", "r", encoding="utf-8") as bundle_json:
+            bundle = json.load(bundle_json)
+        p, id = patient(line)
+        count = 0
+        bundle["entry"].append(p)
+        print(bundle)
+        o_betal, L = observation_betalnut(line, id)
+        if L:
+            print("yo")
+            bundle["entry"].append(o_betal)
+        json_bundle = json.dumps(bundle)
+        print(json_bundle)
