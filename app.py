@@ -41,7 +41,7 @@ def upload():
 def parse():
     csv_to_json.parse_csv()
     return render_template("parse.html")
-
+    
 @app.route("/upload_result")
 def result():
     return render_template("upload_result.html")
